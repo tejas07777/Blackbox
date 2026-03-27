@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Study Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="theme-morning">
+    <div class="app-container">
+        <div class="glass-card card-shadow">
+            
+            <section id="screen-input" class="screen active">
+                <div class="header">
+                    <div class="brand">
+                        <i data-lucide="brain" class="icon-accent"></i>
+                        <h1>Smart Assistant</h1>
+                    </div>
+                    <div id="theme-name" class="theme-tag">Morning Mode</div>
+                </div>
+                <p id="theme-label" class="theme-desc">☀️ Morning Mode Active</p>
+                
+                <div class="stats-bar">
+                    <span><i data-lucide="clock"></i> Total: <span id="stat-time">0h 0m</span></span>
+                    <span><i data-lucide="bar-chart-3"></i> Sessions: <span id="stat-sessions">0</span></span>
+                </div>
+
+                <div class="input-card">
+                    <label>TASK TITLE</label>
+                    <input type="text" id="task-title" placeholder="What are you working on?">
+                    
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>ENERGY</label>
+                            <select id="task-energy">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>DAYS LEFT</label>
+                            <input type="number" id="task-deadline" placeholder="e.g. 2">
+                        </div>
+                    </div>
+                    <button id="add-task-btn" class="btn-black"><i data-lucide="plus"></i> Add to Queue</button>
+                </div>
+
+                <div class="queue-section">
+                    <div class="queue-header">
+                        <i data-lucide="list-todo"></i> QUEUE (<span id="queue-count">0</span>)
+                    </div>
+                    <div id="task-list" class="custom-scrollbar">
+                        <div class="empty-state">Your study queue is empty</div>
+                    </div>
+                </div>
+
+                <button id="start-study-btn" class="btn-primary main-action">🚀 Start Study Session</button>
+            </section>
+
+            <section id="screen-suggestion" class="screen">
+                <button class="back-link" onclick="showScreen('input')">
+                    <i data-lucide="arrow-left"></i> Back to Planner
+                </button>
+                
+                <div class="suggestion-content">
+                    <div class="step-indicator">TASK <span id="current-task-num">1</span> OF <span id="total-tasks-num">1</span></div>
+                    <h2 id="suggested-title">Deep Work: Physics</h2>
+                    <div id="suggested-reason" class="reason-tag">High Energy: Full focus session</div>
+                </div>
+
+                <div class="duration-card">
+                    <label>SET FOCUS DURATION</label>
+                    <div class="counter">
+                        <button onclick="adjustMinutes(-5)">-</button>
+                        <div class="time-display">
+                            <span id="focus-mins">25</span>
+                            <small>MINUTES</small>
+                        </div>
+                        <button onclick="adjustMinutes(5)">+</button>
+                    </div>
+                    <p id="blue-hour-note" class="hidden">🌙 Max 15m in Blue Hour</p>
+                </div>
+
+                <button id="start-timer-btn" class="btn-primary main-action">
+                    <i data-lucide="play"></i> Start Focus Session
+                </button>
+            </section>
+
+            <section id="screen-timer" class="screen">
+                <div class="timer-circle-container">
+                    <svg class="timer-svg" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" class="circle-bg"></circle>
+                        <circle cx="50" cy="50" r="45" id="progress-ring" class="circle-progress"></circle>
+                    </svg>
+                    <div class="timer-display-content">
+                        <span id="timer-text" class="timer-text">25:00</span>
+                        <small>FOCUSING</small>
+                    </div>
+                </div>
+
+                <div class="timer-footer">
+                    <h3 id="timer-status"><i data-lucide="zap" class="animate-pulse"></i> Stay Focused</h3>
+                    <p id="timer-task-name">Currently: Task Name</p>
+                </div>
+
+                <div class="timer-controls">
+                    <button id="pause-btn" class="btn-outline">Pause</button>
+                    <button id="stop-btn" class="btn-ghost">Stop</button>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
